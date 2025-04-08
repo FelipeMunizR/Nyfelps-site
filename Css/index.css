@@ -47,8 +47,9 @@ select:focus {
 
 button {
     margin-left: 20px;
+    padding: 10px;
     border: none;
-    width: 90px;
+    width: 140px;
     background-color: white;
     border-radius: 10px;
     cursor: pointer;
@@ -113,4 +114,26 @@ button:hover {
 
 .item a:hover {
     opacity: 0.3;
+}
+
+
+
+.add {
+    display: flex;
+    flex-direction: column;
+}
+
+.add input {
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.add input:focus {
+    outline: none;
+}
+
+
+.gameadd {
+    margin-top: 20px;
 }
