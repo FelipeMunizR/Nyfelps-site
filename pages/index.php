@@ -1,21 +1,20 @@
 <?php
+session_start();
 
 $itens = [
-    1 => ['titulo' => 'The Witcher 3', 'categoria' => 'RPG', 'imagem' => 'https://th.bing.com/th/id/OIP.-xmCbnhkm4xfHDGb9FudVgHaEK?w=304&h=180&c=7&r=0&o=5&pid=1.7'],
-    2 => ['titulo' => 'Minecraft', 'categoria' => 'Sandbox', 'imagem' => 'https://th.bing.com/th/id/OIP.4q8OzpUFH2-t8mFn4xV9bAAAAA?w=119&h=180&c=7&r=0&o=5&pid=1.7'],
-    3 => ['titulo' => 'FIFA 21', 'categoria' => 'Esporte', 'imagem' => 'https://th.bing.com/th/id/OIP.56azeF_l4UbBW5q8qiQgJAHaD2?w=300&h=180&c=7&r=0&o=5&pid=1.7'],
-    4 => ['titulo' => 'League of Legends', 'categoria' => 'MOBA', 'imagem' => 'https://th.bing.com/th/id/OIP.WlgL9lQyPe7XZKTYFedC0gHaEK?w=322&h=181&c=7&r=0&o=5&pid=1.7'],
+    1 => ['titulo' => 'The Witcher 3', 'categoria' => 'RPG', 'imagem' => 'witcher3.jpg'],
+    2 => ['titulo' => 'Minecraft', 'categoria' => 'Sandbox', 'imagem' => 'minecraft.jpg'],
+    3 => ['titulo' => 'FIFA 21', 'categoria' => 'Esporte', 'imagem' => 'fifa21.jpg'],
+    4 => ['titulo' => 'League of Legends', 'categoria' => 'MOBA', 'imagem' => 'lol.jpg'],
 ];
-
 
 function exibirItens($itens) {
     foreach ($itens as $id => $item) {
         echo "<div class='item'>
-                <img src='{$item['imagem']}' alt='{$item['titulo']}' />
+                <img src='imagens/{$item['imagem']}' alt='{$item['titulo']}' />
                 <h3>{$item['titulo']}</h3>
                 <p>Categoria: {$item['categoria']}</p>
                 <a href='detalhes.php?id={$id}'>Ver mais</a>
-                <button onclick='removerJogo({$id})'>Remover</button>
               </div>";
     }
 }
@@ -31,23 +30,7 @@ function filtrarItens($itens, $categoriaFiltro) {
     return $itens;
 }
 
-if (isset($_POST['adicionar'])) {
-    $novoJogo = [
-        'titulo' => $_POST['titulo'],
-        'categoria' => $_POST['categoria'],
-        'imagem' => $_POST['imagem']
-    ];
-    $itens[] = $novoJogo;
-}
-
-if (isset($_GET['remover'])) {
-    $idRemover = $_GET['remover'];
-    unset($itens[$idRemover]);
-}
-
-// Filtrar os itens com base na categoria
 $itensFiltrados = filtrarItens($itens, $categoriaFiltro);
-
 ?>
 
 <!DOCTYPE html>
