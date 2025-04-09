@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $host = 'localhost';
 $db = 'site_usuarios';
 $user = 'root';
@@ -15,20 +19,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            // Verificar se usuário já existe
+            // Verificar se o usuário já existe
             $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE usuario = ?");
             $stmt->execute([$usuario]);
 
             if ($stmt->fetch()) {
                 $mensagem = "Nome de usuário já cadastrado.";
             } else {
-                // Cadastrar
+                // Inserir o usuário no banco
                 $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
                 $stmt = $pdo->prepare("INSERT INTO usuarios (usuario, senha) VALUES (?, ?)");
                 $stmt->execute([$usuario, $senhaHash]);
                 $mensagem = "Cadastro realizado com sucesso!";
             }
-
         } catch (PDOException $e) {
             $mensagem = "Erro: " . $e->getMessage();
         }
@@ -43,24 +46,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Usuário</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Mantém os estilos */
+        body { font-family: Arial, sans-serif; padding: 40px; background: #f5f5f5; }
+        .cadastro-container { max-width: 400px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px #ccc; }
+        label, input { display: block; width: 100%; margin-bottom: 10px; }
+        input[type="text"], input[type="password"] { padding: 8px; }
+        button { padding: 10px; width: 100%; background: #333; color: white; border: none; border-radius: 4px; }
+        p.mensagem { text-align: center; }
+    </style>
 </head>
 <body>
-    <h1>Cadastro</h1>
+    <div class="cadastro-container">
+        <h1>Cadastro</h1>
 
-    <?php if ($mensagem): ?>
-        <p><?php echo $mensagem; ?></p>
-    <?php endif; ?>
+        <?php if ($mensagem): ?>
+            <p class="mensagem"><?php echo $mensagem; ?></p>
+        <?php endif; ?>
 
-    <form method="POST">
-        <label for="usuario">Usuário:</label>
-        <input type="text" name="usuario" id="usuario" required><br><br>
+        <form method="POST">
+            <label for="usuario">Usuário:</label>
+            <input type="text" name="usuario" id="usuario" required>
 
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha" id="senha" required><br><br>
+            <label for="senha">Senha:</label>
+            <input type="password" name="senha" id="senha" required>
 
-        <button type="submit">Cadastrar</button>
-    </form>
+            <button type="submit">Cadastrar</button>
+        </form>
 
-    <p><a href="login.php">Já tem conta? Faça login</a></p>
+        <p><a href="login.php">Já tem conta? Faça login</a></p>
+    </div>
 </body>
 </html>

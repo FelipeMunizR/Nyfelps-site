@@ -1,5 +1,4 @@
 <?php
-//verificação de erros
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -27,16 +26,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($usuarioDB && password_verify($senha, $usuarioDB['senha'])) {
             $_SESSION['usuario'] = $usuarioDB['usuario'];
-            header('Location: index.php');
+            header('Location: index.php'); // Redireciona para a home
             exit;
         } else {
             $erro = 'Usuário ou senha inválidos.';
         }
-
     } catch (PDOException $e) {
         $erro = "Erro ao conectar: " . $e->getMessage();
     }
-    
 }
 ?>
 
@@ -45,24 +42,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Mantenha seus estilos originais */
+        body { font-family: Arial, sans-serif; padding: 40px; background: #f5f5f5; }
+        .login-container { max-width: 400px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px #ccc; }
+        label, input { display: block; width: 100%; margin-bottom: 10px; }
+        input[type="text"], input[type="password"] { padding: 8px; }
+        button { padding: 10px; width: 100%; background: #333; color: white; border: none; border-radius: 4px; }
+        p.erro { color: red; text-align: center; }
+    </style>
 </head>
 <body>
-    <h1>Login</h1>
+    <div class="login-container">
+        <h1>Login</h1>
 
-    <?php if ($erro): ?>
-        <p style="color: red;"><?php echo $erro; ?></p>
-    <?php endif; ?>
+        <?php if ($erro): ?>
+            <p class="erro"><?php echo $erro; ?></p>
+        <?php endif; ?>
 
-    <form method="POST">
-        <label for="usuario">Usuário:</label>
-        <input type="text" name="usuario" id="usuario" required><br><br>
+        <form method="POST">
+            <label for="usuario">Usuário:</label>
+            <input type="text" name="usuario" id="usuario" required>
 
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha" id="senha" required><br><br>
+            <label for="senha">Senha:</label>
+            <input type="password" name="senha" id="senha" required>
 
-        <button type="submit">Entrar</button>
-    </form>
+            <button type="submit">Entrar</button>
+        </form>
 
-    <p><a href="cadastro.php">Ainda não tem conta? Cadastre-se</a></p>
+        <p><a href="cadastro.php">Ainda não tem conta? Cadastre-se</a></p>
+    </div>
 </body>
 </html>

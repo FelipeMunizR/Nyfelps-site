@@ -23,9 +23,19 @@ try {
             senha VARCHAR(255) NOT NULL
         )
     ");
+    
+    // Opcional: tabela de jogos para armazenar itens do catálogo
+    $pdo->exec("
+        CREATE TABLE IF NOT EXISTS jogos (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            titulo VARCHAR(100) NOT NULL,
+            categoria VARCHAR(50) NOT NULL,
+            imagem VARCHAR(100) NOT NULL
+        )
+    ");
 
-    echo "Tabela de usuários criada!";
+    echo "Tabelas criadas com sucesso!";
 } catch (PDOException $e) {
-    die("Erro ao criar banco: " . $e->getMessage());
+    die("Erro: " . $e->getMessage());
 }
 ?>

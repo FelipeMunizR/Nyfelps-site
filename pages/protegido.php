@@ -17,7 +17,7 @@ if (!isset($_SESSION['itens'])) {
 
 $erroCadastro = '';
 
-// Processa o formulário para adicionar um novo jogo
+// Adicionar novo jogo
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['acao'] === 'adicionar') {
     $titulo = $_POST['titulo'] ?? '';
     $categoria = $_POST['categoria'] ?? '';
@@ -34,12 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['ac
     }
 }
 
-// Processa o formulário para remover um jogo (pelo índice)
+// Remover jogo (pelo índice)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['acao'] === 'remover') {
     $indice = $_POST['indice'] ?? '';
     if (is_numeric($indice) && isset($_SESSION['itens'][$indice])) {
         unset($_SESSION['itens'][$indice]);
-        // Reorganiza o array para manter os índices corretos
         $_SESSION['itens'] = array_values($_SESSION['itens']);
     }
 }
@@ -51,63 +50,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['ac
     <meta charset="UTF-8">
     <title>Área Protegida - Gerenciar Jogos</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f9f9f9;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 6px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1, h2 {
-            text-align: center;
-        }
-        .logout {
-            text-align: right;
-        }
-        form {
-            margin-bottom: 20px;
-        }
-        label, input {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-        input[type="text"] {
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        button {
-            padding: 10px;
-            width: 100%;
-            background: #333;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-        }
-        .erro {
-            color: red;
-            text-align: center;
-        }
-        .jogo {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-        }
-        .jogo img {
-            max-width: 100%;
-            height: auto;
-        }
-        .jogo form {
-            display: inline;
-        }
+        body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: #fff; padding: 20px; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1, h2 { text-align: center; }
+        .logout { text-align: right; }
+        form { margin-bottom: 20px; }
+        label, input { display: block; width: 100%; margin-bottom: 10px; }
+        input[type="text"] { padding: 8px; box-sizing: border-box; }
+        button { padding: 10px; width: 100%; background: #333; color: #fff; border: none; border-radius: 4px; }
+        .erro { color: red; text-align: center; }
+        .jogo { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 4px; }
     </style>
 </head>
 <body>

@@ -39,62 +39,122 @@ $itensFiltrados = filtrarItens($itens, $categoriaFiltro);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Jogos</title>
-    <link rel="stylesheet" href="../Css/index.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS básico pra exemplo */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .topo {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topo .titulo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .topo .links a {
+            color: white;
+            margin-left: 15px;
+            text-decoration: none;
+        }
+
+        .topo .links a:hover {
+            text-decoration: underline;
+        }
+
+        .catalogo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 200px;
+        }
+
+        .item img {
+            width: 100%;
+            height: auto;
+        }
+
+        .gerenciar {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #e7e7e7;
+        }
+
+        .gerenciar a {
+            display: inline-block;
+            margin-top: 10px;
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
 
-<header class="header">
-    <h1>Catálogo de Jogos</h1>
-</header>
+    <div class="topo">
+        <div class="titulo">Catálogo de Jogos</div>
+        <div class="links">
+            <a href="index.php">Home</a>
+            <a href="catalogo.php">Catálogo</a>
+            <a href="sobre.php">Sobre</a>
+            <a href="contato.php">Contato</a>
+            <?php if (isset($_SESSION['usuario'])): ?>
+                <!-- Exibe as opções para usuários logados -->
+                <a href="protegido.php">Gerenciar Jogos</a>
+                <a href="logout.php">Sair</a>
+            <?php else: ?>
+                <a href="login.php">Entrar</a>
+                <a href="cadastro.php">Cadastrar</a>
+            <?php endif; ?>
+        </div>
+    </div>
 
-<form method="GET" action="index.php">
-    <label for="categoria">Filtrar por Categoria:</label>
-    <select name="categoria" id="categoria">
-        <option value="">Selecione</option>
-        <option value="RPG" <?php echo ($categoriaFiltro === 'RPG') ? 'selected' : ''; ?>>RPG</option>
-        <option value="Sandbox" <?php echo ($categoriaFiltro === 'Sandbox') ? 'selected' : ''; ?>>Sandbox</option>
-        <option value="Esporte" <?php echo ($categoriaFiltro === 'Esporte') ? 'selected' : ''; ?>>Esporte</option>
-        <option value="MOBA" <?php echo ($categoriaFiltro === 'MOBA') ? 'selected' : ''; ?>>MOBA</option>
-    </select>
-    <button type="submit">Filtrar</button>
-    <button type="button" onclick="mostrarFormulario()">Adicionar Jogo</button>
-</form>
+    <main>
+        <h1 style="text-align: center;">Catálogo de Jogos</h1>
 
-<div id="formAdicionarJogo" style="display:none;">
-    <h2 class="gameadd">Adicionar Novo Jogo</h2>
-    <form method="POST" action="index.php" class="add">
-        <label for="titulo">Título:</label>
-        <input type="text" name="titulo" required><br>
-        
-        <label for="categoria">Categoria:</label>
-        <input type="text" name="categoria" required><br>
-        
-        <label for="imagem">URL da Imagem:</label>
-        <input type="text" name="imagem" required><br>
+        <form method="GET" action="index.php" style="text-align: center; margin-bottom: 20px;">
+            <label for="categoria">Filtrar por Categoria:</label>
+            <select name="categoria" id="categoria">
+                <option value="">Selecione</option>
+                <option value="RPG" <?php echo ($categoriaFiltro === 'RPG') ? 'selected' : ''; ?>>RPG</option>
+                <option value="Sandbox" <?php echo ($categoriaFiltro === 'Sandbox') ? 'selected' : ''; ?>>Sandbox</option>
+                <option value="Esporte" <?php echo ($categoriaFiltro === 'Esporte') ? 'selected' : ''; ?>>Esporte</option>
+                <option value="MOBA" <?php echo ($categoriaFiltro === 'MOBA') ? 'selected' : ''; ?>>MOBA</option>
+            </select>
+            <button type="submit">Filtrar</button>
+        </form>
 
-        <button type="submit" name="adicionar">Adicionar Jogo</button>
-    </form>
-</div>
+        <div class="catalogo">
+            <?php exibirItens($itensFiltrados); ?>
+        </div>
 
-<div class="catalogo">
-    <?php exibirItens($itensFiltrados); ?>
-</div>
-
-<script>
-    function mostrarFormulario() {
-        var form = document.getElementById("formAdicionarJogo");
-        form.style.display = form.style.display === "none" ? "block" : "none";
-    }
-
-    function removerJogo(id) {
-        if (confirm("Tem certeza de que deseja remover este jogo?")) {
-            window.location.href = "index.php?remover=" + id;
-        }
-    }
-</script>
+        <?php if (isset($_SESSION['usuario'])): ?>
+            <div class="gerenciar">
+                <h2>Gerencie o Catálogo</h2>
+                <p>Adicione ou remova jogos do catálogo.</p>
+                <a href="protegido.php">Acessar Gerenciamento</a>
+            </div>
+        <?php endif; ?>
+    </main>
 
 </body>
 </html>
