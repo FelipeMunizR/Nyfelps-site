@@ -68,9 +68,11 @@ try {
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
+<link rel="stylesheet" href="../Css/index.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <head>
-    <!-- ... (mantenha o head original) ... -->
 </head>
 
 <body>
@@ -117,7 +119,7 @@ try {
                     <form method="POST" style="margin-top: 10px;">
                         <input type="hidden" name="acao" value="remover">
                         <input type="hidden" name="id" value="<?php echo $jogo['id']; ?>">
-                        <button type="submit">Remover</button>
+                        <button class="remover" type="submit">Remover</button>
                     </form>
                 </div>
             <?php endforeach; ?>

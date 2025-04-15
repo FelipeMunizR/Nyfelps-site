@@ -43,18 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Usuário</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Mantém os estilos */
-        body { font-family: Arial, sans-serif; padding: 40px; background: #f5f5f5; }
-        .cadastro-container { max-width: 400px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px #ccc; }
-        label, input { display: block; width: 100%; margin-bottom: 10px; }
-        input[type="text"], input[type="password"] { padding: 8px; }
-        button { padding: 10px; width: 100%; background: #333; color: white; border: none; border-radius: 4px; }
-        p.mensagem { text-align: center; }
-    </style>
+    <link rel="stylesheet" href="../Css/login.css">
+
 </head>
 <body>
+    <div class="login-container">
     <div class="../Css/login.css">
         <h1>Cadastro</h1>
 
@@ -73,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
 
         <p><a href="login.php">Já tem conta? Faça login</a></p>
+    </div>
     </div>
 </body>
 </html>

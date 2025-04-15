@@ -45,15 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="../Css/login.css">
-    <style>
-        /* Mantenha seus estilos originais */
-        body { font-family: Arial, sans-serif; padding: 40px; background: #f5f5f5; }
-        .login-container { max-width: 400px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px #ccc; }
-        label, input { display: block; width: 100%; margin-bottom: 10px; }
-        input[type="text"], input[type="password"] { padding: 8px; }
-        button { padding: 10px; width: 100%; background: #333; color: white; border: none; border-radius: 4px; }
-        p.erro { color: red; text-align: center; }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="login-container">

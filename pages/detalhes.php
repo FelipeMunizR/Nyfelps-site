@@ -26,43 +26,9 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($jogo['titulo']) ?></title>
-    <link rel="stylesheet" href="../Css/detalhes.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        /* Estilos melhorados */
-        body {
-            font-family: 'Poppins', sans-serif;
-            padding: 20px;
-        }
-
-        .detalhes {
-            max-width: 800px;
-            margin: 20px auto;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 30px;
-        }
-
-        img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .voltar {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        button {
-            padding: 12px 25px;
-            background: #2563eb;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="../Css/detalhes.css">
+   
 </head>
 
 <body>
@@ -81,9 +47,8 @@ try {
         </div>
     </div>
 
-    <div class="voltar">
-        <button onclick="window.location.href='index.php'">Voltar ao Catálogo</button>
-    </div>
+    <button style="background-color: white;"><a href="../pages/index.php">Voltar ao Catálogo</a></button>
+
 
 </body>
 

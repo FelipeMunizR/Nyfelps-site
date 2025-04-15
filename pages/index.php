@@ -2,6 +2,13 @@
 session_start();
 require 'config.php'; // Conexão com o banco
 
+// Verifica configuração do banco de dados
+try {
+    $pdo->query("SELECT 1 FROM usuarios LIMIT 1");
+} catch (PDOException $e) {
+    die("Banco não configurado. Acesse <a href='../criar-banco.php'>criar-banco.php</a> primeiro.");
+}
+
 try {
     // Buscar categorias para o filtro
     $categorias = $pdo->query("SELECT DISTINCT categoria FROM jogos ORDER BY categoria")->fetchAll(PDO::FETCH_COLUMN);
@@ -33,16 +40,13 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Jogos</title>
     <link rel="stylesheet" href="../Css/index.css">
-    <style>
-        /* Mantenha seus estilos originais */
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        /* ... (seus outros estilos permanecem iguais) ... */
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="topo">
-        <div class="titulo">Catálogo de Jogos</div>
+    <header>
         <div class="links">
             <a href="index.php">Home</a>
             <?php if (isset($_SESSION['usuario'])): ?>
@@ -53,7 +57,7 @@ try {
                 <a href="cadastro.php">Cadastrar</a>
             <?php endif; ?>
         </div>
-    </div>
+    </header>
 
     <main>
         <h1 style="text-align: center;">Catálogo de Jogos</h1>
@@ -70,7 +74,7 @@ try {
                     </option>
                 <?php endforeach; ?>
             </select>
-            <button type="submit">Filtrar</button>
+            <button class="filtrar" type="submit">Filtrar</button>
         </form>
 
         <!-- Listagem de Jogos -->
@@ -80,7 +84,7 @@ try {
                     <img src='../imagens/<?= htmlspecialchars($jogo['imagem']) ?>' alt='<?= htmlspecialchars($jogo['titulo']) ?>'>
                     <h3><?= htmlspecialchars($jogo['titulo']) ?></h3>
                     <p>Categoria: <?= htmlspecialchars($jogo['categoria']) ?></p>
-                    <a href='detalhes.php?id=<?= $jogo['id'] ?>'>Ver mais</a>
+                    <a class="seemore" href='detalhes.php?id=<?= $jogo['id'] ?>'>Ver mais</a>
                 </div>
             <?php endforeach; ?>
         </div>

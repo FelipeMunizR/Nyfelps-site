@@ -3,89 +3,108 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-
+    
 }
 
-
-
 body {
-    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
     background-color: wheat;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
 }
 
 .login-container {
     background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
-    height: 400px;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-
-.form {
-    margin-top: 40px;
+.login-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-.login-container h2 {
+.login-container h1 {
     text-align: center;
     margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
 }
 
-.input-field {
-    width: 100%;
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+input {
     padding: 10px;
-    margin: 10px 0;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
 }
 
-
-.input-field:focus {
+input:focus {
     outline: none;
+    border-color: #deb887;
 }
 
-.btn {
-    width: 100%;
-    padding: 10px;
-    background-color: wheat;
-    color: rgb(0, 0, 0);
+button {
+    padding: 12px;
+    background-color: #deb887;
+    color: #000;
+    font-weight: bold;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: 1s;
-    margin-top: 30px;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-.btn:hover {
-    opacity: 0.3;
+button:hover {
+    background-color: #d2b48c;
+    transform: scale(1.02);
 }
 
-.error-message {
+p {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+p a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+p a:hover {
+    color: #000;
+}
+
+/* Estilo para mensagem de erro */
+.erro {
     color: red;
     text-align: center;
-    margin-bottom: 10px;
-}
-
-.success-message {
-    color: green;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-
-h2 {
-    color: black;
-
-}
-
-a {
-    text-decoration: none;
-    color: black;
+    margin-bottom: 15px;
+    font-size: 14px;
 }

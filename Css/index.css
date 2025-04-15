@@ -1,27 +1,152 @@
-* {
+body {
+    background-color: wheat;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
 
-body {
-    background-color: wheat;
+/* Estrutura principal */
+main {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    width: 100vw;
-    margin: 0; 
+    align-items: center;
+    padding: 40px 20px;
+    min-height: calc(100vh - 80px); /* altura da tela menos o header */
 }
 
-.header {
-    width: 100%; 
-    color: rgb(0, 0, 0); 
-    padding: 20px; 
-    text-align: center; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+/* Header fixo no topo ou padrão */
+header {
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: sticky; /* Fica fixo no topo ao rolar */
+    top: 0;
+    z-index: 100;
+    display: flex;
+}
 
+.links a {
+    color: #333;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.links a:hover {
+    color: #000;
+}
+
+
+select {
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100px;
+}
+
+
+.filtrar {
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100px;
+    
+}
+
+.filtrar:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+
+.gerenciar {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+
+.gerenciar a {
+    color: rgb(63, 209, 112);
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 40px;
+
+}
+
+
+.logout {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logout a {
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    margin: 40px auto;
+}
+
+label {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea,
+input[type="file"] {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #deb887;
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+input[type="file"] {
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+
+button {
+    padding: 12px;
+    background-color: #deb887;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #d2b48c;
+    transform: scale(1.02);
 }
 
 
@@ -30,110 +155,29 @@ h1 {
     justify-content: center;
 }
 
-form {
-    margin-top: 50px;
+h2 {
     display: flex;
-}
-
-select {
-    border: none;
-    margin-left: 20px;
-}
-
-select:focus {
-    outline: none;
-    background-color: none;
-}
-
-button {
-    margin-left: 20px;
-    padding: 10px;
-    border: none;
-    width: 140px;
-    background-color: white;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 1s;
-}
-
-button:hover {
-    opacity: 0.3;
-}
-
-.catalogo {
-    display: flex;
-    margin-top: 50px;
-    flex-wrap: wrap;
     justify-content: center;
 }
 
-.item {
-    width: 250px;
-    padding: 30px;
-    background-color: #ffffff46;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden; 
-    transition: transform 0.3s ease-in-out; 
-    margin-right: 30px;
-    margin-bottom: 30px; 
-}
-
-.item:hover {
-    transform: scale(1.05); 
-}
-
-.item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover; 
-}
-
-.item h3 {
-    font-size: 1.2rem;
-    margin: 10px;
-    color: #333;
-}
-
-.item p {
-    font-size: 0.9rem;
-    margin: 0 10px;
-    color: #666;
-}
-
-.item a {
-    display: block;
-    text-align: left;
-    color: rgb(0, 0, 0);
-    padding: 10px;
-    text-decoration: none;
-    border-radius: 0 0 10px 10px;
-    font-size: 1rem;
-    transition: 1s;
-}
-
-.item a:hover {
-    opacity: 0.3;
-}
-
-
-
-.add {
+p {
     display: flex;
+    justify-content: center;
+}
+
+.jogo {
+    display: flex;
+    justify-content: center;
     flex-direction: column;
-}
-
-.add input {
-    border: none;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.add input:focus {
-    outline: none;
+    align-items: center;
+    text-align: center;
 }
 
 
-.gameadd {
-    margin-top: 20px;
+.seemore {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    align-items: center;
 }
