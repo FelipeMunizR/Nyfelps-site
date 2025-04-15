@@ -8,6 +8,18 @@ O trabalho foi Orientado pelo professor Andre Luis Jeller Selleti.
 
 O tema escolhido foi "Cadastro de jogos favoritos".
 
+Pré-requisito: 
+ - Navegador Chrome
+ - xampp
+
+Para rodar o site:
+ 1 - Coloque o arquivo.zip dentro do htdocs do xampp (para rodar localmente)
+ 2 - Ative Apache e MySql pelo xampp control
+ 3 - Busque pelo endereço do navegador o local da pasta do site (exemplo: http://localhost/Nyfelps-site/)
+ 4 - entre em "pages". O site deve solicitar a criação de um banco de dados. Clique no link para realizá-lo.
+ 5 - Após criar o banco de dados, você receberá uma confirmação. Basta clicar no link para ir para a index.php.
+ 6 - Agora você pode explorar as funcionalidades do site de catálogo de jogos.
+
 Ementa do trabalho:
 
 "Você e sua dupla foram contratados para desenvolver um pequeno sistema para um cliente que deseja um catálogo online dinâmico.
